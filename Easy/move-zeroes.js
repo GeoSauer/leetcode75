@@ -49,5 +49,23 @@ const moveZeroes2 = (nums) => {
   console.log(nums);
 };
 
+//* for loop version
+
+const moveZeroes3 = (nums) => {
+  let current = 0;
+
+  for (let next = current + 1; next <= nums.length - 1; next++) {
+    if (nums[current] !== 0) {
+      current++;
+    } else {
+      if (nums[next] !== 0) {
+        [nums[current], nums[next]] = [nums[next], nums[current]];
+        current++;
+      }
+    }
+  }
+  console.log(nums);
+};
+
 const nums = [0, 1, 0, 3, 12];
 console.log(moveZeroes2(nums));
