@@ -21,6 +21,7 @@
 // str1 and str2 consist of English uppercase letters.
 
 //*Aight I chatGPT'd my way through at lot of this but it was super fun!
+//*But again with the while loops, gonna add a for loop version below
 
 const gdcOfStrings = (str1, str2) => {
   // create some variables to store the lengths of the ingested strings
@@ -41,6 +42,35 @@ const gdcOfStrings = (str1, str2) => {
   const potentialGCD = str1.slice(0, gcdLength);
 
   // check if both strings can be constructed out of it
+  if (
+    str1 === potentialGCD.repeat(len1 / gcdLength) &&
+    str2 === potentialGCD.repeat(len2 / gcdLength)
+  ) {
+    return potentialGCD;
+  } else {
+    return "";
+  }
+};
+
+//* new version with for loop instead of while loop for the Euclidean algo bit
+//* fun tidbit, Leetcode has stricter scoping rules so a and b had to be declared before the for loop
+// let a = len1
+// let b = len2
+// for ( ; b !== 0; )
+
+const gdcOfStrings2 = (str1, str2) => {
+  const len1 = str1.length;
+  const len2 = str2.length;
+
+  for (let a = len1, b = len2; b !== 0; ) {
+    const temp = b;
+    b = a % b;
+    a = temp;
+  }
+  const gcdLength = a;
+
+  const potentialGCD = str1.slice(0, gcdLength);
+
   if (
     str1 === potentialGCD.repeat(len1 / gcdLength) &&
     str2 === potentialGCD.repeat(len2 / gcdLength)
