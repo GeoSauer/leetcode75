@@ -31,4 +31,38 @@ const reverseWords = (str) => {
     .join(" ");
 };
 
+//* it wasn't mentioned but perhaps the challenge was to complete it by manually writing the logic instead of using methods?
+
+const reverseWords2 = (str) => {
+  let reversedStr = "";
+  let word = "";
+  let spaceDetected = false;
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === " ") {
+      if (word.length > 0) {
+        if (reversedStr.length > 0 && spaceDetected) {
+          reversedStr = " " + reversedStr; // Add space between words
+        }
+        reversedStr = word + reversedStr;
+        word = ""; // Reset word
+        spaceDetected = true;
+      }
+    } else {
+      word += str[i];
+      spaceDetected = false;
+    }
+  }
+
+  // Handle the last word (if any)
+  if (word.length > 0) {
+    if (reversedStr.length > 0 && spaceDetected) {
+      reversedStr = " " + reversedStr; // Add space between words
+    }
+    reversedStr = word + reversedStr;
+  }
+
+  return reversedStr;
+};
+
 console.log(reverseWords("a good   example"));
